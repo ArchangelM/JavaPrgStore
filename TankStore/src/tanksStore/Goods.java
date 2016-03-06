@@ -5,4 +5,12 @@ package tanksStore;
  */
 public class Goods {
     private Good[] goods;
+
+    public Goods(Good[] goods) {
+        this.goods = goods;
+    }
+
+    public Good[] getGoods() {
+        return goods;
+    }
 }
