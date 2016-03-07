@@ -5,6 +5,7 @@ package tanksStore;
  */
 public class Good {
     protected int index;
+    protected GoodType type;
     private String name;
     private String articul;
 
