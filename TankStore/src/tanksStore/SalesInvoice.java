@@ -9,20 +9,34 @@ public class SalesInvoice {
     private int number;
     private Client client;
     private Date date;
-    private int lineNumbers;
     double invoiceSum;
+    private Purchase purchase;
 
-    private Purchase[] purchases; //табличная часть расходной накладной
+    //private int lineNumbers;
+    //private Purchase[] purchases; //табличная часть расходной накладной
 
+    /*
     public SalesInvoice(int number, Client client, Date date) {
         this(number, client, date, 1);
    }
+   */
 
+    public SalesInvoice(int number, Client client, Date date, Good good, int quantity) {
+        this.number = number;
+        this.client = client;
+        this.date = date;
+        purchase = new Purchase(good, quantity);
+        invoiceSum = purchase.getSum();
+
+    }
+
+    /*
     public SalesInvoice(int number, Client client, Date date, int lineNumbers) {
         this.number = number;
         this.client = client;
         this.date = date;
         this.lineNumbers = lineNumbers;
+        invoiceSum = 0;
 
         if (lineNumbers > 0) {
             purchases = new Purchase[lineNumbers];
@@ -30,15 +44,23 @@ public class SalesInvoice {
 
         invoiceSum = 0;
 
+    }*/
+
+    @Override
+    public String toString() {
+        return number + " " + client + " " + purchase.getName() + " " + purchase.getQuantity() + " " + invoiceSum;
     }
 
+    public double getInvoiceSum() {
+        return invoiceSum;
+    }
 
     public Client getClient() {
         return client;
     }
 
-    public Purchase[] getPurchases() {
-        return purchases;
+    public Purchase getPurchase() {
+        return purchase;
     }
 
     public Date getDate() {

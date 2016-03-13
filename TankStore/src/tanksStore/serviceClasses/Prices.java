@@ -1,4 +1,7 @@
-package tanksStore;
+package tanksStore.serviceClasses;
+
+import tanksStore.Good;
+import tanksStore.GoodType;
 
 /**
  * Created by Osipov on 13.03.2016.

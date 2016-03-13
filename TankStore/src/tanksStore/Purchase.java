@@ -1,6 +1,8 @@
 package tanksStore;
 
 
+import tanksStore.Good;
+
 /**
  * Created by Osipov on 07.03.2016.
  */
@@ -14,6 +16,10 @@ public class Purchase {
        this.quantity = quantity;
        sum = quantity * good.getPrice();
    }
+
+    public String getName() {
+        return good.getName();
+    }
 
     public Good getGood() {
         return good;

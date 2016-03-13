@@ -24,6 +24,11 @@ public class Good {
         this.quantity = quantity;
     }
 
+    @Override
+    public String toString() {
+        return articul + " " + name + " " + price + " " + quantity + " " + weight;
+    }
+
     public int getQuantity() {
         return quantity;
     }
