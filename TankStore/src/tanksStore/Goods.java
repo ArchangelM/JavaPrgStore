@@ -5,7 +5,11 @@ package tanksStore;
  */
 public class Goods {
     private Good[] goods;
-
+    /*private Tank[] tanks;
+    private Engine[] engines;
+    private Ammo[] ammos;
+    private Armor[] armors;
+*/
     public Goods(Good[] goods) {
         this.goods = goods;
     }

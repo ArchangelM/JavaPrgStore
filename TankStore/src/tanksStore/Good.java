@@ -33,6 +33,10 @@ public class Good {
 
     }
 
+    public GoodType getType() {
+        return type;
+    }
+
     public String getArticul() {
         return articul;
     }
