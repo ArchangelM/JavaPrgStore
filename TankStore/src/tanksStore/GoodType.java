@@ -6,5 +6,5 @@ package tanksStore;
 public enum GoodType {
     TANK, ENGINE, ARMOR, AMMO,;
 
-    final int NUM = 4;
+    final static int NUM = 4;
 }
