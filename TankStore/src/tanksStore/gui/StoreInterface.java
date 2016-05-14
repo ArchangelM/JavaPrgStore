@@ -38,13 +38,16 @@ public class StoreInterface {
         JRadioButton firstProdButton = new JRadioButton();
         firstProdButton.setMnemonic(KeyEvent.VK_F);
         firstProdButton.setActionCommand("Product 1");
+        firstProdButton.setText("First Product");
         firstProdButton.setSelected(true);
 
         JRadioButton secondProdButton = new JRadioButton();
         secondProdButton.setActionCommand("Product 2");
+        secondProdButton.setText("Product2");
 
         JRadioButton thirdProdButton = new JRadioButton();
         thirdProdButton.setActionCommand("Product 3");
+        thirdProdButton.setText("Third Product");
 
         //Register a listener for the radio buttons.
         /*firstProdButton.addActionListener(this);
