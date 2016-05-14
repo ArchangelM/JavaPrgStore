@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.text.NumberFormat;
 
 //public class StoreInterface implements ActionListener {
 public class StoreInterface {
@@ -34,6 +35,7 @@ public class StoreInterface {
 
         JLabel lName = new JLabel("Enter your name: ");
         JTextField tName = new JTextField();
+        tName.setText("Misha");
 
         JRadioButton firstProdButton = new JRadioButton();
         firstProdButton.setMnemonic(KeyEvent.VK_F);
@@ -62,7 +64,11 @@ public class StoreInterface {
 
 
         JLabel lQuantity = new JLabel("Enter quantity: ");
-        JTextField tQuantity = new JTextField();
+        //JTextField tQuantity = new JTextField();
+        //for numbers only
+        NumberFormat nf = NumberFormat.getNumberInstance();
+        JFormattedTextField nQuantity = new JFormattedTextField(nf);
+        nQuantity.setValue(1);
 
         JButton button = new JButton();
         button.setText("Buy");
@@ -77,7 +83,8 @@ public class StoreInterface {
         panel.add(thirdProdButton);
 
         panel.add(lQuantity);
-        panel.add(tQuantity);
+        //panel.add(tQuantity);
+        panel.add(nQuantity);
 
         panel.add(button);
 
