@@ -14,6 +14,7 @@ import java.text.NumberFormat;
 public class StoreInterface {
 
     TankStore shop;
+    int productIndex = 0;
 
     public StoreInterface(TankStore shop) {
         this.shop = shop;
@@ -49,18 +50,26 @@ public class StoreInterface {
         products.setBorder(BorderFactory.createLineBorder(Color.BLUE));
 
         JRadioButton firstProdButton = new JRadioButton();
+        ActionListener rbActionListener = new RBActionListener();
+
         firstProdButton.setMnemonic(KeyEvent.VK_F);
-        firstProdButton.setActionCommand("Product 1");
+        //firstProdButton.setActionCommand("Product 1");
+        firstProdButton.setActionCommand(String.valueOf(0));
         firstProdButton.setText("First Product");
+        firstProdButton.addActionListener(rbActionListener);
         firstProdButton.setSelected(true);
 
         JRadioButton secondProdButton = new JRadioButton();
-        secondProdButton.setActionCommand("Product 2");
-        secondProdButton.setText("Product2");
+        secondProdButton.setActionCommand(String.valueOf(1));
+        secondProdButton.setText("Product 2");
+        secondProdButton.addActionListener(rbActionListener);
 
         JRadioButton thirdProdButton = new JRadioButton();
-        thirdProdButton.setActionCommand("Product 3");
+        thirdProdButton.setActionCommand(String.valueOf(2));
         thirdProdButton.setText("Third Product");
+        thirdProdButton.addActionListener(rbActionListener);
+
+
 
         //Register a listener for the radio buttons.
         /*firstProdButton.addActionListener(this);
@@ -115,13 +124,11 @@ public class StoreInterface {
         return panel;
     }
 
-
-    /** Listens to the radio buttons. */
-/*    @Override
-    public void actionPerformed(ActionEvent e) {
-        picture.setIcon(createImageIcon("images/"
-                + e.getActionCommand()
-                + ".gif"));
+    private class RBActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            productIndex = Integer.parseInt(e.getActionCommand());
+        }
     }
-    */
+
 }
