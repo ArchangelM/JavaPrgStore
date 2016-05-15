@@ -96,6 +96,16 @@ public class StoreInterface {
 
         JButton buttonBuy = new JButton();
         buttonBuy.setText("Buy");
+        buttonBuy.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                //ссылки уже и нету...
+                String message = "Product added";
+                JOptionPane.showMessageDialog(new JFrame(), message, "Сегодня вам повезло!",
+                        JOptionPane.WARNING_MESSAGE);
+            }
+        });
 
         panel.add(buttonBuy, new GridBagConstraints(1, 3, 1, 1, 0, 0, GridBagConstraints.LINE_START,
                 0, new Insets(10, 40, 10, 10), 0, 0));
