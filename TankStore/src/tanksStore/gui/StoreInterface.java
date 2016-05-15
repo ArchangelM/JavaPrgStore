@@ -32,10 +32,21 @@ public class StoreInterface {
 
     private JPanel CreateSellingPanel() {
         JPanel panel = new JPanel();
+        panel.setLayout(new GridBagLayout());
 
         JLabel lName = new JLabel("Enter your name: ");
         JTextField tName = new JTextField();
-        tName.setText("Misha");
+        //tName.setText("Misha");
+        tName.setColumns(25);
+        panel.add(lName, new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.LINE_START,
+                   GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+        panel.add(tName, new GridBagConstraints(1, 0, 1, 1, 0, 0, GridBagConstraints.LINE_START,
+                0, new Insets(0, 0, 0, 0), 0, 0));
+
+
+        JPanel products = new JPanel();
+        products.setLayout(new GridLayout(3, 0));
+        products.setBorder(BorderFactory.createLineBorder(Color.BLUE));
 
         JRadioButton firstProdButton = new JRadioButton();
         firstProdButton.setMnemonic(KeyEvent.VK_F);
@@ -62,31 +73,34 @@ public class StoreInterface {
         productGroup.add(secondProdButton);
         productGroup.add(thirdProdButton);
 
+        products.add(firstProdButton);
+        products.add(secondProdButton);
+        products.add(thirdProdButton);
+
+        panel.add(products, new GridBagConstraints(1, 1, 1, 1, 0, 0, GridBagConstraints.LINE_START,
+                0, new Insets(10, 0, 10, 0), 30, 30));
+
 
         JLabel lQuantity = new JLabel("Enter quantity: ");
         //JTextField tQuantity = new JTextField();
         //for numbers only
         NumberFormat nf = NumberFormat.getNumberInstance();
         JFormattedTextField nQuantity = new JFormattedTextField(nf);
+        nQuantity.setColumns(2);
         nQuantity.setValue(1);
 
-        JButton button = new JButton();
-        button.setText("Buy");
-        button.setLocation(300, 300);
-        button.setActionCommand("Buy1");
+        panel.add(lQuantity, new GridBagConstraints(0, 2, 1, 1, 0, 0, GridBagConstraints.LINE_START,
+                0, new Insets(0, 0, 0, 0), 0, 0));
+        panel.add(nQuantity, new GridBagConstraints(1, 2, 1, 1, 0, 0, GridBagConstraints.LINE_START,
+                0, new Insets(0, 0, 0, 0), 0, 0));
 
-        panel.add(lName);
-        panel.add(tName);
+        JButton buttonBuy = new JButton();
+        buttonBuy.setText("Buy");
 
-        panel.add(firstProdButton);
-        panel.add(secondProdButton);
-        panel.add(thirdProdButton);
+        panel.add(buttonBuy, new GridBagConstraints(1, 3, 1, 1, 0, 0, GridBagConstraints.LINE_START,
+                0, new Insets(10, 40, 10, 10), 0, 0));
 
-        panel.add(lQuantity);
-        //panel.add(tQuantity);
-        panel.add(nQuantity);
 
-        panel.add(button);
 
         return panel;
     }
