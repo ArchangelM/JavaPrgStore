@@ -76,7 +76,8 @@ public class FCircle extends JPanel{
 
     private void drawCircle(Graphics g, int x, int y) {
         g.setColor(Color.RED);
-        g.fillOval(diametr+x, diametr+y, 150, 150);
+        g.fillOval(x, y, 150, 150);
+        System.out.println("x = " + x + " y = " + y);
 
     }
 
