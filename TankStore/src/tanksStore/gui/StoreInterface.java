@@ -127,7 +127,6 @@ public class StoreInterface {
 
     private JPanel CreateTablePanel() {
 
-
         JPanel panel = new JPanel();
         panel.setLayout(new GridBagLayout());
         String[] header = new String[] {"#", "Date", "Client", "Good", "Quantity", "Summ"};
@@ -140,6 +139,8 @@ public class StoreInterface {
         listTransform(shop.getSalesInvoices(), data);
 
         JTable table = new JTable(data, header);
+        table.getColumnModel().getColumn(1).setPreferredWidth(200);
+
         table.setFillsViewportHeight(true);
         JScrollPane scrollPane = new JScrollPane(table);
 

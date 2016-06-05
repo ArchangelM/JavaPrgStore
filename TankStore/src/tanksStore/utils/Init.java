@@ -19,10 +19,15 @@ public class Init {
 
         for(int i = 0; i < 5;i++) {
             Good good = new Good("Tank1", "123", i, 45.67d, random.nextInt(4), 20d);
-            SalesInvoice curSI = new SalesInvoice(i+1, new Client(i, "Gadya"), calendar.getTime(), good, random.nextInt(5)+1);
-            //SalesInvoice(int number, Client client, Date date, Good good, int quantity)
+            try {
+                SalesInvoice curSI = new SalesInvoice(i + 1, new Client(i, "Gadya"), calendar.getTime(), good, random.nextInt(5) + 1);
+                //SalesInvoice(int number, Client client, Date date, Good good, int quantity)
+                Thread.sleep(500);
+                si.add(i, curSI);
+            } catch(Exception e) {
+                System.out.println(e);
+            }
 
-            si.add(i, curSI);
         }
     }
 }
