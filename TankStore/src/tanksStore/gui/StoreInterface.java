@@ -115,6 +115,29 @@ public class StoreInterface {
         return panel;
     }
 
+    private JPanel CreateTablePanel() {
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridBagLayout());
+        String[] header = new String[] {"#", "Date", "Client", "Good", "Number"};
+        Object[][] data = new Object[4][];
+
+        JTable table = new JTable(data, header);
+
+        JLabel lName = new JLabel("Enter your name: ");
+        JTextField tName = new JTextField();
+        //tName.setText("Misha");
+        tName.setColumns(25);
+        panel.add(lName, new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.LINE_START,
+                GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+        panel.add(tName, new GridBagConstraints(1, 0, 1, 1, 0, 0, GridBagConstraints.LINE_START,
+                0, new Insets(0, 0, 0, 0), 0, 0));
+
+
+        JPanel products = new JPanel();
+        products.setLayout(new GridLayout(3, 0));
+        products.setBorder(BorderFactory.createLineBorder(Color.BLUE));
+        return panel;
+    }
 
     /** Listens to the radio buttons. */
 /*    @Override
