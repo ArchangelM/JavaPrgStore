@@ -1,7 +1,11 @@
 package tanksStore.gui;
 
 import com.sun.deploy.panel.JavaPanel;
+import tanksStore.SalesInvoice;
 import tanksStore.TankStore;
+import tanksStore.utils.ListTransform;
+
+import java.util.List;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,19 +14,25 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.text.NumberFormat;
 
+import static tanksStore.utils.ListTransform.listTransform;
+
 //public class StoreInterface implements ActionListener {
 public class StoreInterface {
 
-    TankStore shop;
+    private TankStore shop;
+    public JFrame frame;
+    final int PRIMARY_QUANTITY = 5;
 
     public StoreInterface(TankStore shop) {
         this.shop = shop;
 
-        JFrame frame = new JFrame();
+        //JFrame frame = new JFrame();
+        frame = new JFrame();
         frame.setMinimumSize(new Dimension(800, 600));
         frame.setLocation(100, 100);
 
-        frame.getContentPane().add(CreateSellingPanel());
+        //frame.getContentPane().add(CreateSellingPanel());
+        //frame.getContentPane().add(CreateTablePanel());
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -116,27 +126,40 @@ public class StoreInterface {
     }
 
     private JPanel CreateTablePanel() {
+
+
         JPanel panel = new JPanel();
         panel.setLayout(new GridBagLayout());
-        String[] header = new String[] {"#", "Date", "Client", "Good", "Number"};
-        Object[][] data = new Object[4][];
+        String[] header = new String[] {"#", "Date", "Client", "Good", "Quantity", "Summ"};
+        Object[][] data = new Object[PRIMARY_QUANTITY][];
+
+        for(int i = 0; i < data.length;i++) {
+            data[i] = new Object[header.length];
+        }
+
+        listTransform(shop.getSalesInvoices(), data);
 
         JTable table = new JTable(data, header);
+        table.setFillsViewportHeight(true);
+        JScrollPane scrollPane = new JScrollPane(table);
 
-        JLabel lName = new JLabel("Enter your name: ");
-        JTextField tName = new JTextField();
-        //tName.setText("Misha");
-        tName.setColumns(25);
-        panel.add(lName, new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.LINE_START,
+        panel.add(scrollPane, new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.LINE_START,
                 GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-        panel.add(tName, new GridBagConstraints(1, 0, 1, 1, 0, 0, GridBagConstraints.LINE_START,
-                0, new Insets(0, 0, 0, 0), 0, 0));
+        /*
+        panel.add(table.getTableHeader(), new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.LINE_START,
+                GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+        panel.add(table, new GridBagConstraints(0, 1, 1, 1, 0, 0, GridBagConstraints.LINE_START,
+                GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+        */
 
 
-        JPanel products = new JPanel();
-        products.setLayout(new GridLayout(3, 0));
-        products.setBorder(BorderFactory.createLineBorder(Color.BLUE));
         return panel;
+    }
+
+    public void viewTable() {
+        frame.getContentPane().add(CreateTablePanel());
+        frame.pack();
+
     }
 
     /** Listens to the radio buttons. */

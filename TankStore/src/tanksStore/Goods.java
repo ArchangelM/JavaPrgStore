@@ -16,7 +16,7 @@ public class Goods {
     }
 
     public void printGoods() {
-        System.out.println(" #  Aricul   Name      Price  Quantity Wheiht");
+        System.out.println(" #  Articul   Name      Price  Quantity Wheiht");
         GoodType type = GoodType.TANK;
         System.out.println("Type " + type);
         int j = type.ordinal();

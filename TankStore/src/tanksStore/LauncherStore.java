@@ -7,6 +7,8 @@ public class LauncherStore {
         TankStore tankStore = new TankStore();
 
         StoreInterface panel = new StoreInterface(tankStore);
+        panel.viewTable();
+
 
     }
 }

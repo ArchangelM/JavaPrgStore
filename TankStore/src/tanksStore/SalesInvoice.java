@@ -66,4 +66,12 @@ public class SalesInvoice {
     public Date getDate() {
         return date;
     }
+
+    public String getGoodName() {
+        return purchase.getName();
+    }
+
+    public String getGoodQuantity() {
+        return String.valueOf(purchase.getQuantity());
+    }
 }
