@@ -211,10 +211,11 @@ public class StoreInterface {
         //tablePanel.setEnabled(false);
         //salePanel.setEnabled(true);
 
-        frame.remove(tablePanel);
+        frame.getContentPane().removeAll();
         salePanel = CreateSellingPanel(shop.getGoods());
         frame.getContentPane().add(salePanel);
         frame.pack();
+        frame.repaint();
 
 
     }
@@ -227,6 +228,7 @@ public class StoreInterface {
         tablePanel = CreateTablePanel();
         frame.getContentPane().add(tablePanel);
         frame.pack();
+        frame.repaint();
 
     }
 
