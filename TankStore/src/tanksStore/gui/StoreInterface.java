@@ -42,11 +42,11 @@ public class StoreInterface {
         frame.setLocation(100, 100);
 
         barMenu = new JMenuBar();
-        menu = new JMenu("Try me");
-        menu.setMnemonic(KeyEvent.VK_T);
+        menu = new JMenu("My menu");
+        menu.setMnemonic(KeyEvent.VK_M);
 
-        menuItem = new JMenuItem("Make a buy");
-        menuItem.setMnemonic(KeyEvent.VK_M);
+        menuItem = new JMenuItem("Tank buy");
+        menuItem.setMnemonic(KeyEvent.VK_T);
 
 
         menuItem.addActionListener(new ActionListener() {
@@ -91,12 +91,9 @@ public class StoreInterface {
         products.setLayout(new GridLayout(4, 0));
         products.setBorder(BorderFactory.createLineBorder(Color.BLUE));
 
-        JRadioButton firstProdButton = new JRadioButton();
-        firstProdButton.setMnemonic(KeyEvent.VK_F);
-
         JRadioButton[] buttons = new JRadioButton[goods.size()];
         buttons[0] = new JRadioButton(goods.get(0).getName());
-        buttons[0].setMnemonic(KeyEvent.VK_F);
+        buttons[0].setMnemonic(KeyEvent.VK_3);
         buttons[0].setActionCommand(goods.get(0).getArticul());
         //buttons[0].setText(goods.get(0).getName());
         buttons[0].setSelected(true);
