@@ -1,4 +1,8 @@
-package tanksStore;
+package tanksStore.data;
+
+import tanksStore.Client;
+import tanksStore.Good;
+import tanksStore.Purchase;
 
 import java.util.Date;
 

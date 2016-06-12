@@ -9,14 +9,18 @@ import tanksStore.utils.Init;
 import static tanksStore.utils.Init.goodsInit;
 
 public class LauncherStore {
-    public static void main(String[] args) {
+
+    public static void main(String[] args) throws Exception {
         TankStore tankStore = new TankStore();
-        List<Good> goods = new ArrayList<>();
 
-        goodsInit(goods);
+        goodsInit(tankStore.getGoods());
 
-        StoreInterface panel = new StoreInterface(tankStore);
-        panel.viewTable();
+        StoreInterface panelSI = new StoreInterface(tankStore);
+
+        panelSI.createPanels(tankStore.getGoods());
+        //panelSI.viewTable();
+        //Thread.sleep(1000);
+        //panelSI.viewSaleForm();
 
 
     }

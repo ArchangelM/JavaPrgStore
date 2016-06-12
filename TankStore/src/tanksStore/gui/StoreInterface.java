@@ -1,10 +1,12 @@
 package tanksStore.gui;
 
-import com.sun.deploy.panel.JavaPanel;
-import tanksStore.SalesInvoice;
+import tanksStore.Client;
+import tanksStore.Good;
 import tanksStore.TankStore;
-import tanksStore.utils.ListTransform;
+import tanksStore.data.SalesInvoice;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.swing.*;
@@ -21,6 +23,14 @@ public class StoreInterface {
 
     private TankStore shop;
     public JFrame frame;
+    public JMenuBar barMenu;
+    private JMenu menu;
+    private JMenuItem menuItem;
+
+
+    private JPanel tablePanel;
+    private JPanel salePanel;
+
     final int PRIMARY_QUANTITY = 5;
 
     public StoreInterface(TankStore shop) {
@@ -31,6 +41,29 @@ public class StoreInterface {
         frame.setMinimumSize(new Dimension(800, 600));
         frame.setLocation(100, 100);
 
+        barMenu = new JMenuBar();
+        menu = new JMenu("Try me");
+        menu.setMnemonic(KeyEvent.VK_T);
+
+        menuItem = new JMenuItem("Make a buy");
+        menuItem.setMnemonic(KeyEvent.VK_M);
+
+
+        menuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                viewSaleForm();
+            }
+
+
+
+        });
+
+        menu.add(menuItem);
+        barMenu.add(menu);
+        frame.setJMenuBar(barMenu);
+
         //frame.getContentPane().add(CreateSellingPanel());
         //frame.getContentPane().add(CreateTablePanel());
 
@@ -40,7 +73,7 @@ public class StoreInterface {
 
     }
 
-    private JPanel CreateSellingPanel() {
+    private JPanel CreateSellingPanel(List<Good> goods) {
         JPanel panel = new JPanel();
         panel.setLayout(new GridBagLayout());
 
@@ -55,22 +88,31 @@ public class StoreInterface {
 
 
         JPanel products = new JPanel();
-        products.setLayout(new GridLayout(3, 0));
+        products.setLayout(new GridLayout(4, 0));
         products.setBorder(BorderFactory.createLineBorder(Color.BLUE));
 
         JRadioButton firstProdButton = new JRadioButton();
         firstProdButton.setMnemonic(KeyEvent.VK_F);
-        firstProdButton.setActionCommand("Product 1");
-        firstProdButton.setText("First Product");
-        firstProdButton.setSelected(true);
 
-        JRadioButton secondProdButton = new JRadioButton();
-        secondProdButton.setActionCommand("Product 2");
-        secondProdButton.setText("Product2");
+        JRadioButton[] buttons = new JRadioButton[goods.size()];
+        buttons[0] = new JRadioButton(goods.get(0).getName());
+        buttons[0].setMnemonic(KeyEvent.VK_F);
+        buttons[0].setActionCommand(goods.get(0).getArticul());
+        //buttons[0].setText(goods.get(0).getName());
+        buttons[0].setSelected(true);
 
-        JRadioButton thirdProdButton = new JRadioButton();
-        thirdProdButton.setActionCommand("Product 3");
-        thirdProdButton.setText("Third Product");
+        ButtonGroup productGroup = new ButtonGroup();
+        productGroup.add(buttons[0]);
+        products.add(buttons[0]);
+
+        for (int i = 1; i < goods.size(); i++) {
+            buttons[i] = new JRadioButton(goods.get(i).getName());
+            buttons[i].setActionCommand(goods.get(i).getArticul());
+            //buttons[i].setText(goods.get(i).getName());
+            productGroup.add(buttons[i]);
+            products.add(buttons[i]);
+
+        }
 
         //Register a listener for the radio buttons.
         /*firstProdButton.addActionListener(this);
@@ -78,14 +120,6 @@ public class StoreInterface {
         thirdProdButton.addActionListener(this);
         */
         //Group the radio buttons.
-        ButtonGroup productGroup = new ButtonGroup();
-        productGroup.add(firstProdButton);
-        productGroup.add(secondProdButton);
-        productGroup.add(thirdProdButton);
-
-        products.add(firstProdButton);
-        products.add(secondProdButton);
-        products.add(thirdProdButton);
 
         panel.add(products, new GridBagConstraints(1, 1, 1, 1, 0, 0, GridBagConstraints.LINE_START,
                 0, new Insets(10, 0, 10, 0), 30, 30));
@@ -109,18 +143,25 @@ public class StoreInterface {
         buttonBuy.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Calendar calendar = new GregorianCalendar();
 
-                //ссылки уже и нету...
+                shop.addSaleInvoice(new SalesInvoice(1, shop.addClient(shop.getClients().size()+1, "Gadya1"),
+                                    calendar.getTime(), goods.get(2), 2));
+                //ссылки уже и нету... Date date, Good good, int quantity
                 String message = "Product added";
                 JOptionPane.showMessageDialog(new JFrame(), message, "Сегодня вам повезло!",
                         JOptionPane.WARNING_MESSAGE);
+                viewTable();
             }
+
+
+
         });
 
         panel.add(buttonBuy, new GridBagConstraints(1, 3, 1, 1, 0, 0, GridBagConstraints.LINE_START,
                 0, new Insets(10, 40, 10, 10), 0, 0));
 
-
+        panel.setEnabled(true);
 
         return panel;
     }
@@ -130,7 +171,7 @@ public class StoreInterface {
         JPanel panel = new JPanel();
         panel.setLayout(new GridBagLayout());
         String[] header = new String[] {"#", "Date", "Client", "Good", "Quantity", "Summ"};
-        Object[][] data = new Object[PRIMARY_QUANTITY][];
+        Object[][] data = new Object[shop.getSalesInvoices().size()][];
 
         for(int i = 0; i < data.length;i++) {
             data[i] = new Object[header.length];
@@ -157,8 +198,37 @@ public class StoreInterface {
         return panel;
     }
 
+
+    public void createPanels(List<Good> goods) {
+        //salePanel = CreateSellingPanel(goods);
+        //frame.getContentPane().add(salePanel);
+        //salePanel.setEnabled(false);
+        tablePanel = CreateTablePanel();
+        frame.getContentPane().add(tablePanel);
+
+        frame.pack();
+    }
+
+    public void viewSaleForm() {
+
+        //tablePanel.setEnabled(false);
+        //salePanel.setEnabled(true);
+
+        frame.remove(tablePanel);
+        salePanel = CreateSellingPanel(shop.getGoods());
+        frame.getContentPane().add(salePanel);
+        frame.pack();
+
+
+    }
+
     public void viewTable() {
-        frame.getContentPane().add(CreateTablePanel());
+
+        //salePanel.setEnabled(false);
+        //tablePanel.setEnabled(true);
+        frame.remove(salePanel);
+        tablePanel = CreateTablePanel();
+        frame.getContentPane().add(tablePanel);
         frame.pack();
 
     }

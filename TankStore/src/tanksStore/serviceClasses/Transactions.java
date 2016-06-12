@@ -1,7 +1,7 @@
 package tanksStore.serviceClasses;
 
 import tanksStore.DayTotalSale;
-import tanksStore.SalesInvoice;
+import tanksStore.data.SalesInvoice;
 
 import java.util.Date;
 

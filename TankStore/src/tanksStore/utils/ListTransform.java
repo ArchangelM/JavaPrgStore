@@ -1,13 +1,15 @@
 package tanksStore.utils;
 
-import tanksStore.SalesInvoice;
+import tanksStore.data.SalesInvoice;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class ListTransform {
+
     public static void listTransform(List<SalesInvoice> si, Object[][] table) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+
         for(int i = 0; i < si.size();i++) {
             //{"#", "Date", "Client", "Good", "Number", "Summ"};
             table[i][0] = i;

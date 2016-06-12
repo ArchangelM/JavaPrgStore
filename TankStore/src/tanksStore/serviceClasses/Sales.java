@@ -1,9 +1,7 @@
 package tanksStore.serviceClasses;
 
-import tanksStore.Purchase;
-import tanksStore.SalesInvoice;
+import tanksStore.data.SalesInvoice;
 
-import javax.xml.soap.SAAJMetaFactory;
 import java.util.Date;
 
 /**
