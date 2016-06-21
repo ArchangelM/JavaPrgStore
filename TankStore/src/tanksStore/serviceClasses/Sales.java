@@ -4,9 +4,6 @@ import tanksStore.data.SalesInvoice;
 
 import java.util.Date;
 
-/**
- * Created by Osipov on 13.03.2016.
- */
 public class Sales {
 
     final long milliDay = 24*60*60*1000;
@@ -27,4 +24,5 @@ public class Sales {
 
         return lastSales;
     }
+
 }
