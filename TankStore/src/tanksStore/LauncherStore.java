@@ -14,6 +14,7 @@ public class LauncherStore {
     public static void main(String[] args) throws Exception {
         SplashScreen splash = SplashScreen.getSplashScreen();
         Thread.sleep(5000);
+        //splash.close();
 
         TankStore tankStore = new TankStore();
 
