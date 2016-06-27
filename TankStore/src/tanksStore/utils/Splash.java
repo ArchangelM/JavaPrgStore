@@ -7,8 +7,9 @@ import java.awt.*;
  */
 public class Splash {
 
-    //SplashScreen splash = new SplashScreen.getSplashScreen();
-   // Thread.sleep(2000);
+    //
+
+
 }
 
 

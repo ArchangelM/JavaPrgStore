@@ -2,9 +2,6 @@ package tanksStore;
 
 import java.util.Date;
 
-/**
- * Created by Osipov on 13.03.2016.
- */
 public class DayTotalSale {
     private Date date;
     private int numSales;
